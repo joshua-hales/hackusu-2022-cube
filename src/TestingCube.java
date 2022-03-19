@@ -48,7 +48,7 @@ public class TestingCube {
                         }
                 });
         System.out.println(cube1);
-        cube1.rotate(new String[] {"F"});
+        cube1.rotate(new String[] {"B"});
         System.out.println(cube1);
     }
 }

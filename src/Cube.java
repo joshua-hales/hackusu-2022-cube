@@ -529,6 +529,78 @@ public class Cube {
     }
 
     private void rotateBack() {
-        
+        String[][] currentFront = new String[3][3];
+        for (int row = 0; row < this.tiles[3].length; row++) {
+            currentFront[row] = this.tiles[3][row].clone();
+        }
+
+        String tempTile = "";
+        String tempTile2 = "";
+
+        tempTile = currentFront[2][0];
+        tempTile2 = currentFront[0][0];
+        currentFront[2][0] = currentFront[2][2];
+        currentFront[0][0] = tempTile;
+        tempTile = tempTile2;
+        tempTile2 = currentFront[0][2];
+        currentFront[0][2] = tempTile;
+        tempTile = tempTile2;
+        currentFront[2][2] = tempTile;
+
+        tempTile = currentFront[1][2];
+        currentFront[1][2] = currentFront[0][1];
+        tempTile2 = currentFront[2][1];
+        currentFront[2][1] = tempTile;
+        tempTile = currentFront[1][0];
+        currentFront[1][0] = tempTile2;
+        currentFront[0][1] = tempTile;
+
+        for (int row = 0; row < this.tiles[3].length; row++) {
+            this.tiles[3][row] = currentFront[row].clone();
+        }
+
+        String[][] currentSides = new String[4][3];
+        currentSides[0][0] = this.tiles[0][0][2];
+        currentSides[0][1] = this.tiles[0][0][1];
+        currentSides[0][2] = this.tiles[0][0][0];
+
+        currentSides[1][0] = this.tiles[4][0][0];
+        currentSides[1][1] = this.tiles[4][1][0];
+        currentSides[1][2] = this.tiles[4][2][0];
+
+        currentSides[2][0] = this.tiles[5][0][2];
+        currentSides[2][1] = this.tiles[5][0][1];
+        currentSides[2][2] = this.tiles[5][0][0];
+
+        currentSides[3][0] = this.tiles[2][2][2];
+        currentSides[3][1] = this.tiles[2][1][2];
+        currentSides[3][2] = this.tiles[2][0][2];
+
+        String[] tempRow = new String[3];
+        String[] tempRow2 = new String[3];
+        tempRow = currentSides[1].clone();
+        tempRow2 = currentSides[2].clone();
+        currentSides[1] = currentSides[0].clone();
+        currentSides[2] = tempRow.clone();
+        tempRow = tempRow2.clone();
+        tempRow2 = currentSides[3].clone();
+        currentSides[3] = tempRow.clone();
+        currentSides[0] = tempRow2.clone();
+
+        this.tiles[0][0][2] = currentSides[0][0];
+        this.tiles[0][0][1] = currentSides[0][1];
+        this.tiles[0][0][0] = currentSides[0][2];
+
+        this.tiles[4][0][0] = currentSides[1][0];
+        this.tiles[4][1][0] = currentSides[1][1];
+        this.tiles[4][2][0] = currentSides[1][2];
+
+        this.tiles[5][0][2] = currentSides[2][0];
+        this.tiles[5][0][1] = currentSides[2][1];
+        this.tiles[5][0][0] = currentSides[2][2];
+
+        this.tiles[2][2][2] = currentSides[3][0];
+        this.tiles[2][1][2] = currentSides[3][1];
+        this.tiles[2][0][2] = currentSides[3][2];
     }
 }
