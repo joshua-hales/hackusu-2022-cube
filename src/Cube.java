@@ -163,46 +163,21 @@ public class Cube {
 
     public void rotate(String command) {
         int times = 1;
-        if (command.startsWith("U")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+        if (command.endsWith("'")) {
+            times = 3;
+        }
+        for (int i = 0; i < times; i++) {
+            if (command.startsWith("U")) {
                 rotateUp();
-            }
-        } else if (command.startsWith("D")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+            } else if (command.startsWith("D")) {
                 rotateDown();
-            }
-        } else if (command.startsWith("L")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+            } else if (command.startsWith("L")) {
                 rotateLeft();
-            }
-        } else if (command.startsWith("R")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+            } else if (command.startsWith("R")) {
                 rotateRight();
-            }
-        } else if (command.startsWith("F")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+            } else if (command.startsWith("F")) {
                 rotateFront();
-            }
-        } else if (command.startsWith("B")) {
-            if (command.endsWith("'")) {
-                times = 3;
-            }
-            for (int i = 0; i < times; i++) {
+            } else if (command.startsWith("B")) {
                 rotateBack();
             }
         }
