@@ -128,10 +128,12 @@ public class Cube {
     }
 
     public String getTile(int face, int tile) {
-        if (tile % 3 == 0) {
-            tile = 4;
+        int col = tile % 3;
+        int row = (tile - 1) / 3;
+        if (col == 0) {
+            col = 3;
         }
-        return tiles[face - 1][(tile%3) - 1][(tile%3) - 1];
+        return tiles[face - 1][row][col - 1];
     }
 
     public ArrayList<String> getHistory() {
