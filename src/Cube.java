@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Brief Description
@@ -102,7 +103,14 @@ public class Cube {
     }
 
     public void scramble() {
-
+        int numTurns = 10000;
+        Random random = new Random();
+        String[] options = new String[] {"U", "D", "L", "R", "F", "B"};
+        String[] moves = new String[numTurns];
+        for (int i = 0; i < numTurns; i++) {
+            moves[i] = options[random.nextInt(options.length)];
+        }
+        rotate(moves);
     }
 
     public boolean isValid() {
@@ -151,6 +159,23 @@ public class Cube {
         }
         output.append("history = " + history);
         return output.toString();
+    }
+
+    public void rotate(String command) {
+        if (command.startsWith("U")) {
+            rotateUp();
+        } else if (command.startsWith("D")) {
+            rotateDown();
+        } else if (command.startsWith("L")) {
+            rotateLeft();
+        } else if (command.startsWith("R")) {
+            rotateRight();
+        } else if (command.startsWith("F")) {
+            rotateFront();
+        } else if (command.startsWith("B")) {
+            rotateBack();
+        }
+        history.add(command);
     }
 
     public void rotate(String[] commands) {

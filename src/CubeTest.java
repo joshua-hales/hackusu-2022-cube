@@ -108,5 +108,11 @@ public class CubeTest {
         Assert.assertTrue("Solved cube should be solved after 4 of the same turn", cube1.isSolved());
         cube1.rotate(new String[] {"R", "R", "R", "R"});
         Assert.assertTrue("Solved cube should be solved after 4 of the same turn", cube1.isSolved());
+        cube1.rotate(new String[] {"F", "F", "F", "F"});
+        Assert.assertTrue("Solved cube should be solved after 4 of the same turn", cube1.isSolved());
+        cube1.rotate(new String[] {"B", "B", "B", "B"});
+        Assert.assertTrue("Solved cube should be solved after 4 of the same turn", cube1.isSolved());
+        cube1.scramble();
+        Assert.assertFalse("Cube should not be solved after a scramble", cube1.isSolved());
     }
 }
