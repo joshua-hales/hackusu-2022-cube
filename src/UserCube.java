@@ -75,7 +75,7 @@ public class UserCube {
             boolean validTurn = false;
             while (!validTurn) {
                 if (turn.toUpperCase().startsWith("T")) {
-                    String newTurn = turn.replace("T", "U");
+                    String newTurn = turn.toUpperCase().replace("T", "U");
                     turn = newTurn;
                 }
                 if (isValidInput(TURNS, turn)) {
