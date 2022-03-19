@@ -51,8 +51,33 @@ public class TestingCube {
         cube1.rotate(new String[] {"D"});
         System.out.println(cube1);
 
-//        Cube cube2 = new Cube();
+        Cube cube2 = new Cube();
 //        cube2.scramble();
 //        System.out.println(cube2.getHistory());
+
+        System.out.println(cube2.isSolved());
+        int timesRotated = 1;
+        cube2.rotate(new String[] {"U"});
+        while (!cube2.isSolved()) {
+            System.out.println("Turn: " + timesRotated);
+            System.out.println(cube2);
+            if (timesRotated % 4 == 0) {
+                cube2.rotate(new String[] {"U"});
+            }
+            else if (timesRotated % 4 == 1) {
+                cube2.rotate(new String[]{"L"});
+            }
+            else if (timesRotated % 4 == 2) {
+                cube2.rotate(new String[]{"B"});
+            }
+            else {
+                cube2.rotate(new String[] {"R"});
+            }
+            timesRotated++;
+            System.out.println("Turn: " + timesRotated);
+            System.out.println(cube2);
+            System.out.println("------------------------------------\n\n");
+        }
+        System.out.println("times rotated = " + timesRotated);
     }
 }
