@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Brief Description
  * <p>
@@ -8,6 +10,7 @@
 public class Cube {
 
     private String[][][] tiles;
+    private ArrayList<String> history;
 
     public Cube() {
         this.tiles = new String[][][]
@@ -43,5 +46,6 @@ public class Cube {
                         {"Y","Y","Y"}
                     }
                 };
+        this.history = new ArrayList<>();
     }
 }

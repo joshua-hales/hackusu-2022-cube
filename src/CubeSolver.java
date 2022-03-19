@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Brief Description
  * <p>
@@ -9,19 +7,13 @@ import java.util.ArrayList;
  */
 public class CubeSolver {
     private Cube cube;
-    private ArrayList<String> history;
 
     public CubeSolver(Cube cube) {
         this.cube = cube;
-        this.history = new ArrayList<>();
     }
 
     public void solve() {
 
-    }
-
-    public ArrayList<String> getHistory() {
-        return history;
     }
 
     private void solveTop() {
