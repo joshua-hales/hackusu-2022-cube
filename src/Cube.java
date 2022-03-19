@@ -198,62 +198,61 @@ public class Cube {
     }
 
     private void rotateUp() {
-        String[][] currentSides = new String[4][3];
-        for (int face = 0; face < 3; face++) {
-            for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
-                currentSides[face][tile] = this.tiles[face + 2][0][tile];
-            }
-        }
-
-        String[] currentSideRow;
-        String[] tempSideRow;
-        currentSideRow = this.tiles[1][0].clone();
-        for (int face = 0; face < 3; face++) {
-            tempSideRow = this.tiles[4 - face][0].clone();
-            this.tiles[4 - face][0] = currentSideRow.clone();
-            currentSideRow = tempSideRow.clone();
-        }
-
         String[][] currentTop = new String[3][3];
         for (int row = 0; row < this.tiles[0].length; row++) {
-            for (int tile = 0; tile < this.tiles[0][row].length; tile++) {
-                currentTop[row][tile] = this.tiles[0][row][tile];
-            }
+            currentTop[row] = this.tiles[0][row].clone();
         }
-        String tempTile = "";
-        String tempTileToReplace = "";
 
-        tempTile = currentTop[0][2];
-        currentTop[0][2] = currentTop[0][0];
-        tempTileToReplace = currentTop[2][2];
-        currentTop[2][2] = tempTile;
-        tempTile = tempTileToReplace;
+        String[][] newTop = new String[3][3];
+        newTop = rotateFace(currentTop).clone();
 
-        tempTileToReplace = currentTop[2][0];
-        currentTop[2][0] = tempTile;
-        tempTile = tempTileToReplace;
-
-        currentTop[0][0] = tempTile;
-
-
-        tempTile = currentTop[1][2];
-        currentTop[1][2] = currentTop[0][1];
-        tempTileToReplace = currentTop[2][1];
-        currentTop[2][1] = tempTile;
-        tempTile = currentTop[1][0];
-        currentTop[1][0] = tempTileToReplace;
-        currentTop[0][1] = tempTile;
-
-        for (int face = 0; face < 3; face++) {
-            for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
-                this.tiles[face + 1][0][tile] = currentSides[face][tile];
-            }
-        }
         for (int row = 0; row < this.tiles[0].length; row++) {
-            for (int tile = 0; tile < this.tiles[0].length; tile++) {
-                this.tiles[0][row][tile] = currentTop[row][tile];
-            }
+            this.tiles[0][row] = newTop[row].clone();
         }
+
+        String[][] currentSides = new String[4][3];
+        currentSides[0][0] = this.tiles[1][0][2];
+        currentSides[0][1] = this.tiles[1][0][1];
+        currentSides[0][2] = this.tiles[1][0][0];
+
+        currentSides[1][0] = this.tiles[4][0][2];
+        currentSides[1][1] = this.tiles[4][0][1];
+        currentSides[1][2] = this.tiles[4][0][0];
+
+        currentSides[2][0] = this.tiles[3][0][2];
+        currentSides[2][1] = this.tiles[3][0][1];
+        currentSides[2][2] = this.tiles[3][0][0];
+
+        currentSides[3][0] = this.tiles[2][0][2];
+        currentSides[3][1] = this.tiles[2][0][1];
+        currentSides[3][2] = this.tiles[2][0][0];
+
+        String[] tempRow = new String[3];
+        String[] tempRow2 = new String[3];
+        tempRow = currentSides[1].clone();
+        tempRow2 = currentSides[2].clone();
+        currentSides[1] = currentSides[0].clone();
+        currentSides[2] = tempRow.clone();
+        tempRow = tempRow2.clone();
+        tempRow2 = currentSides[3].clone();
+        currentSides[3] = tempRow.clone();
+        currentSides[0] = tempRow2.clone();
+
+        this.tiles[1][0][2] = currentSides[0][0];
+        this.tiles[1][0][1] = currentSides[0][1];
+        this.tiles[1][0][0] = currentSides[0][2];
+
+        this.tiles[4][0][2] = currentSides[1][0];
+        this.tiles[4][0][1] = currentSides[1][1];
+        this.tiles[4][0][0] = currentSides[1][2];
+
+        this.tiles[3][0][2] = currentSides[2][0];
+        this.tiles[3][0][1] = currentSides[2][1];
+        this.tiles[3][0][0] = currentSides[2][2];
+
+        this.tiles[2][0][2] = currentSides[3][0];
+        this.tiles[2][0][1] = currentSides[3][1];
+        this.tiles[2][0][0] = currentSides[3][2];
     }
 
     private void rotateDown() {
@@ -262,29 +261,11 @@ public class Cube {
             currentBottom[row] = this.tiles[5][row].clone();
         }
 
-        String tempTile = "";
-        String tempTile2 = "";
-
-        tempTile = currentBottom[2][0];
-        tempTile2 = currentBottom[0][0];
-        currentBottom[2][0] = currentBottom[2][2];
-        currentBottom[0][0] = tempTile;
-        tempTile = tempTile2;
-        tempTile2 = currentBottom[0][2];
-        currentBottom[0][2] = tempTile;
-        tempTile = tempTile2;
-        currentBottom[2][2] = tempTile;
-
-        tempTile = currentBottom[1][2];
-        currentBottom[1][2] = currentBottom[0][1];
-        tempTile2 = currentBottom[2][1];
-        currentBottom[2][1] = tempTile;
-        tempTile = currentBottom[1][0];
-        currentBottom[1][0] = tempTile2;
-        currentBottom[0][1] = tempTile;
+        String[][] newBottom = new String[3][3];
+        newBottom = rotateFace(currentBottom).clone();
 
         for (int row = 0; row < this.tiles[5].length; row++) {
-            this.tiles[5][row] = currentBottom[row].clone();
+            this.tiles[5][row] = newBottom[row].clone();
         }
 
         String[][] currentSides = new String[4][3];
@@ -318,29 +299,11 @@ public class Cube {
             currentLeft[row] = this.tiles[4][row].clone();
         }
 
-        String tempTile = "";
-        String tempTile2 = "";
-
-        tempTile = currentLeft[2][0];
-        tempTile2 = currentLeft[0][0];
-        currentLeft[2][0] = currentLeft[2][2];
-        currentLeft[0][0] = tempTile;
-        tempTile = tempTile2;
-        tempTile2 = currentLeft[0][2];
-        currentLeft[0][2] = tempTile;
-        tempTile = tempTile2;
-        currentLeft[2][2] = tempTile;
-
-        tempTile = currentLeft[1][2];
-        currentLeft[1][2] = currentLeft[0][1];
-        tempTile2 = currentLeft[2][1];
-        currentLeft[2][1] = tempTile;
-        tempTile = currentLeft[1][0];
-        currentLeft[1][0] = tempTile2;
-        currentLeft[0][1] = tempTile;
+        String[][] newLeft = new String[3][3];
+        newLeft = rotateFace(currentLeft).clone();
 
         for (int row = 0; row < this.tiles[4].length; row++) {
-            this.tiles[4][row] = currentLeft[row].clone();
+            this.tiles[4][row] = newLeft[row].clone();
         }
 
         String[][] currentSides = new String[4][3];
@@ -383,34 +346,16 @@ public class Cube {
     }
 
     private void rotateRight() {
-        String[][] currentLeft = new String[3][3];
+        String[][] currentRight = new String[3][3];
         for (int row = 0; row < this.tiles[2].length; row++) {
-            currentLeft[row] = this.tiles[2][row].clone();
+            currentRight[row] = this.tiles[2][row].clone();
         }
 
-        String tempTile = "";
-        String tempTile2 = "";
-
-        tempTile = currentLeft[2][0];
-        tempTile2 = currentLeft[0][0];
-        currentLeft[2][0] = currentLeft[2][2];
-        currentLeft[0][0] = tempTile;
-        tempTile = tempTile2;
-        tempTile2 = currentLeft[0][2];
-        currentLeft[0][2] = tempTile;
-        tempTile = tempTile2;
-        currentLeft[2][2] = tempTile;
-
-        tempTile = currentLeft[1][2];
-        currentLeft[1][2] = currentLeft[0][1];
-        tempTile2 = currentLeft[2][1];
-        currentLeft[2][1] = tempTile;
-        tempTile = currentLeft[1][0];
-        currentLeft[1][0] = tempTile2;
-        currentLeft[0][1] = tempTile;
+        String[][] newRight = new String[3][3];
+        newRight = rotateFace(currentRight).clone();
 
         for (int row = 0; row < this.tiles[2].length; row++) {
-            this.tiles[2][row] = currentLeft[row].clone();
+            this.tiles[2][row] = newRight[row].clone();
         }
 
         String[][] currentSides = new String[4][3];
@@ -458,29 +403,11 @@ public class Cube {
             currentFront[row] = this.tiles[1][row].clone();
         }
 
-        String tempTile = "";
-        String tempTile2 = "";
-
-        tempTile = currentFront[2][0];
-        tempTile2 = currentFront[0][0];
-        currentFront[2][0] = currentFront[2][2];
-        currentFront[0][0] = tempTile;
-        tempTile = tempTile2;
-        tempTile2 = currentFront[0][2];
-        currentFront[0][2] = tempTile;
-        tempTile = tempTile2;
-        currentFront[2][2] = tempTile;
-
-        tempTile = currentFront[1][2];
-        currentFront[1][2] = currentFront[0][1];
-        tempTile2 = currentFront[2][1];
-        currentFront[2][1] = tempTile;
-        tempTile = currentFront[1][0];
-        currentFront[1][0] = tempTile2;
-        currentFront[0][1] = tempTile;
+        String[][] newFront = new String[3][3];
+        newFront = rotateFace(currentFront).clone();
 
         for (int row = 0; row < this.tiles[1].length; row++) {
-            this.tiles[1][row] = currentFront[row].clone();
+            this.tiles[1][row] = newFront[row].clone();
         }
 
         String[][] currentSides = new String[4][3];
@@ -529,34 +456,16 @@ public class Cube {
     }
 
     private void rotateBack() {
-        String[][] currentFront = new String[3][3];
+        String[][] currentBack = new String[3][3];
         for (int row = 0; row < this.tiles[3].length; row++) {
-            currentFront[row] = this.tiles[3][row].clone();
+            currentBack[row] = this.tiles[3][row].clone();
         }
 
-        String tempTile = "";
-        String tempTile2 = "";
-
-        tempTile = currentFront[2][0];
-        tempTile2 = currentFront[0][0];
-        currentFront[2][0] = currentFront[2][2];
-        currentFront[0][0] = tempTile;
-        tempTile = tempTile2;
-        tempTile2 = currentFront[0][2];
-        currentFront[0][2] = tempTile;
-        tempTile = tempTile2;
-        currentFront[2][2] = tempTile;
-
-        tempTile = currentFront[1][2];
-        currentFront[1][2] = currentFront[0][1];
-        tempTile2 = currentFront[2][1];
-        currentFront[2][1] = tempTile;
-        tempTile = currentFront[1][0];
-        currentFront[1][0] = tempTile2;
-        currentFront[0][1] = tempTile;
+        String[][] newBack = new String[3][3];
+        newBack = rotateFace(currentBack).clone();
 
         for (int row = 0; row < this.tiles[3].length; row++) {
-            this.tiles[3][row] = currentFront[row].clone();
+            this.tiles[3][row] = newBack[row].clone();
         }
 
         String[][] currentSides = new String[4][3];
@@ -602,5 +511,30 @@ public class Cube {
         this.tiles[2][2][2] = currentSides[3][0];
         this.tiles[2][1][2] = currentSides[3][1];
         this.tiles[2][0][2] = currentSides[3][2];
+    }
+
+    private String[][] rotateFace(String[][] face) {
+        String tempTile = "";
+        String tempTile2 = "";
+
+        tempTile = face[2][0];
+        tempTile2 = face[0][0];
+        face[2][0] = face[2][2];
+        face[0][0] = tempTile;
+        tempTile = tempTile2;
+        tempTile2 = face[0][2];
+        face[0][2] = tempTile;
+        tempTile = tempTile2;
+        face[2][2] = tempTile;
+
+        tempTile = face[1][2];
+        face[1][2] = face[0][1];
+        tempTile2 = face[2][1];
+        face[2][1] = tempTile;
+        tempTile = face[1][0];
+        face[1][0] = tempTile2;
+        face[0][1] = tempTile;
+
+        return face;
     }
 }
