@@ -11,7 +11,7 @@ public class TestingCube {
         CubeSolver cubeSolver = new CubeSolver(cube);
 
         System.out.println(cube);
-        cube.rotate(new String[] {});
+        cube.rotate(new String[] {"U"});
         System.out.println(cube);
 
         Cube cube1 = new Cube(new String[][][]
@@ -48,7 +48,7 @@ public class TestingCube {
                         }
                 });
         System.out.println(cube1);
-        cube1.rotate(new String[] {});
+        cube1.rotate(new String[] {"U", "D"});
         System.out.println(cube1);
     }
 }
