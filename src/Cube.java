@@ -162,69 +162,56 @@ public class Cube {
     }
 
     public void rotate(String command) {
+        int times = 1;
         if (command.startsWith("U")) {
-            rotateUp();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateUp();
+            }
         } else if (command.startsWith("D")) {
-            rotateDown();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateDown();
+            }
         } else if (command.startsWith("L")) {
-            rotateLeft();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateLeft();
+            }
         } else if (command.startsWith("R")) {
-            rotateRight();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateRight();
+            }
         } else if (command.startsWith("F")) {
-            rotateFront();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateFront();
+            }
         } else if (command.startsWith("B")) {
-            rotateBack();
+            if (command.endsWith("'")) {
+                times = 3;
+            }
+            for (int i = 0; i < times; i++) {
+                rotateBack();
+            }
         }
         history.add(command);
     }
 
     public void rotate(String[] commands) {
         for (String command : commands) {
-            int times = 1;
-            if (command.startsWith("U")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateUp();
-                }
-            } else if (command.startsWith("D")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateDown();
-                }
-            } else if (command.startsWith("L")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateLeft();
-                }
-            } else if (command.startsWith("R")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateRight();
-                }
-            } else if (command.startsWith("F")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateFront();
-                }
-            } else if (command.startsWith("B")) {
-                if (command.endsWith("'")) {
-                    times = 3;
-                }
-                for (int i = 0; i < times; i++) {
-                    rotateBack();
-                }
-            }
-            history.add(command);
+            this.rotate(command);
         }
     }
 
