@@ -1,7 +1,5 @@
 /**
- * Brief Description
- * <p>
- * Longer Description
+ * Solves a Cube using human friendly methods
  *
  * @author Joshua Hales and Aaron Hales
  */

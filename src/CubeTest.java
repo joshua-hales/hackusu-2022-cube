@@ -1,6 +1,10 @@
 import org.junit.Assert;
-import org.junit.Test;
 
+/**
+ * Tests functionality of Cube
+ *
+ * @author Joshua Hales and Aaron Hales
+ */
 public class CubeTest {
 
     @org.junit.Test
@@ -94,5 +98,7 @@ public class CubeTest {
     public void CubeIsSolved() {
         Cube cube1 = new Cube();
         Assert.assertTrue("Initialized cube should be solved", cube1.isSolved());
+        cube1.rotate(new String[] {});
+        Assert.assertFalse("Solved cube should not be solved after turn", cube1.isSolved());
     }
 }
