@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Brief Description
@@ -202,7 +201,8 @@ public class Cube {
         tempTileToReplace = currentTop[2][1];
         currentTop[2][1] = tempTile;
         tempTile = currentTop[1][0];
-        currentTop[0][1] = tempTileToReplace;
+        currentTop[1][0] = tempTileToReplace;
+        currentTop[0][1] = tempTile;
 
         for (int face = 0; face < 3; face++) {
             for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
