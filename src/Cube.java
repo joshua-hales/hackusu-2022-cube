@@ -154,7 +154,22 @@ public class Cube {
     }
 
     public void rotate(String[] commands) {
-        rotateRight();
+        for (String command : commands) {
+            if (command.startsWith("U")) {
+                rotateUp();
+            } else if (command.startsWith("D")) {
+                rotateDown();
+            } else if (command.startsWith("L")) {
+                rotateLeft();
+            } else if (command.startsWith("R")) {
+                rotateRight();
+            } else if (command.startsWith("F")) {
+                rotateFront();
+            } else if (command.startsWith("B")) {
+                rotateBack();
+            }
+            history.add(command);
+        }
     }
 
     private void rotateUp() {
