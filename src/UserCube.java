@@ -74,7 +74,7 @@ public class UserCube {
             String turn = input.nextLine();
             boolean validTurn = false;
             while (!validTurn) {
-                if (turn.startsWith("T".toUpperCase())) {
+                if (turn.toUpperCase().startsWith("T")) {
                     String newTurn = turn.replace("T", "U");
                     turn = newTurn;
                 }
@@ -90,8 +90,8 @@ public class UserCube {
             }
         }
         System.out.println(printCube(userCube));
-        System.out.println("     Congratulations!!!!\n" +
-                           "You solved the rubik's cube!");
+        System.out.println(String.format("     Congratulations!!!!\n" +
+                           "You solved the rubik's cube!\nIt took %d turns to solve\nThose turns were %s", cube.getHistory().size(), cube.getHistory()));
     }
 
     public static boolean isValidInput(String[] options, String entered) {
