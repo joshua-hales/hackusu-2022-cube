@@ -18,16 +18,16 @@ public class UserCube {
         Cube cube;
         String[][][] userCube = new String[6][3][3];
         if (ownCube) {
-            int numTile = 1;
-            for (int side = 0; side < 6; side++) {
-                for (int row = 0; row < 3; row++) {
-                    for (int tile = 0; tile < 3; tile++) {
-                        userCube[side][row][tile] = String.format("%s", numTile);
-                        numTile++;
+            while (true) {
+                int numTile = 1;
+                for (int side = 0; side < 6; side++) {
+                    for (int row = 0; row < 3; row++) {
+                        for (int tile = 0; tile < 3; tile++) {
+                            userCube[side][row][tile] = String.format("%s", numTile);
+                            numTile++;
+                        }
                     }
                 }
-            }
-            while (true) {
                 System.out.println("Enter in a cube starting at the white face:");
                 for (int side = 0; side < 6; side++) {
                     for (int row = 0; row < 3; row++) {
@@ -74,16 +74,23 @@ public class UserCube {
             String turn = input.nextLine();
             boolean validTurn = false;
             while (!validTurn) {
+                if (turn.startsWith("T".toUpperCase())) {
+                    String newTurn = turn.replace("T", "U");
+                    turn = newTurn;
+                }
                 if (isValidInput(TURNS, turn)) {
                     validTurn = true;
-                    if (turn.startsWith("T".toUpperCase())) {
-                        turn = turn.replace("T", "U");
-                    }
                     cube.rotate(turn);
                 }
             }
         }
-        System.out.println("     Congratulations!!!!" +
+        for (int side = 0; side < cube.getNumSides(); side++) {
+            for (int row = 0; row < cube.getRowLength(side); row++) {
+                userCube[side][row] = cube.getWholeCube()[side][row].clone();
+            }
+        }
+        System.out.println(printCube(userCube));
+        System.out.println("     Congratulations!!!!\n" +
                            "You solved the rubik's cube!");
     }
 
