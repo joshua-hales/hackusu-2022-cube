@@ -12,5 +12,6 @@ public class TestingCube {
 
         System.out.println(cube);
         cube.rotate(new String[] {});
+        System.out.println(cube);
     }
 }

@@ -93,7 +93,7 @@ public class Cube {
     }
 
     public Cube (String[][][] tiles) {
-        this.tiles = new String[3][3][3];
+        this.tiles = new String[6][3][3];
         for (int face = 0; face < tiles.length; face++) {
             for (int row = 0; row < tiles[face].length; row++) {
                 this.tiles[face][row] = tiles[face][row].clone();
@@ -159,61 +159,59 @@ public class Cube {
     }
 
     private void rotateUp() {
+        String[][] currentSides = new String[4][3];
+        for (int face = 0; face < 3; face++) {
+            for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
+                currentSides[face][tile] = this.tiles[face + 2][0][tile];
+            }
+        }
+
+        String[] currentSideRow;
+        String[] tempSideRow;
+        currentSideRow = this.tiles[1][0].clone();
+        for (int face = 0; face < 3; face++) {
+            tempSideRow = this.tiles[4 - face][0].clone();
+            this.tiles[4 - face][0] = currentSideRow.clone();
+            currentSideRow = tempSideRow.clone();
+        }
+
         String[][] currentTop = new String[3][3];
         for (int row = 0; row < this.tiles[0].length; row++) {
-            for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
+            for (int tile = 0; tile < this.tiles[0][row].length; tile++) {
                 currentTop[row][tile] = this.tiles[0][row][tile];
-            }
-        }
-        String[][] currentSides = new String[3][3];
-        for (int face = 0; face < 5; face++) {
-            for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
-                currentSides[face][tile] = this.tiles[face + 1][0][tile];
-            }
-        }
-        String[] currentSideRow = new String[3];
-        String[] tempSideRow = new String[3];
-        for (int face = 0; face < 4; face++) {
-            for (int tile = 0; tile < this.tiles[face][face].length; tile++) {
-                currentSideRow[tile] = currentSides[face][tile];
-                tempSideRow[tile] = currentSides[3 - face][tile];
-                currentSides[3 - face][tile] = currentSideRow[tile];
-                currentSideRow[tile] = tempSideRow[tile];
             }
         }
         String tempTile = "";
         String tempTileToReplace = "";
 
-        tempTile = this.tiles[0][0][2];
-        this.tiles[0][0][2] = this.tiles[0][0][0];
-        tempTileToReplace = this.tiles[0][2][2];
-        this.tiles[0][2][2] = tempTile;
+        tempTile = currentTop[0][2];
+        currentTop[0][2] = currentTop[0][0];
+        tempTileToReplace = currentTop[2][2];
+        currentTop[2][2] = tempTile;
         tempTile = tempTileToReplace;
 
-        tempTileToReplace = this.tiles[0][2][0];
-        this.tiles[0][2][0] = tempTile;
+        tempTileToReplace = currentTop[2][0];
+        currentTop[2][0] = tempTile;
         tempTile = tempTileToReplace;
 
-        tempTileToReplace = this.tiles[0][0][0];
-        this.tiles[0][0][0] = tempTile;
+        currentTop[0][0] = tempTile;
 
 
-        tempTile = this.tiles[0][1][2];
-        this.tiles[0][1][2] = this.tiles[0][0][1];
-        tempTileToReplace = this.tiles[0][2][1];
-        this.tiles[0][1][2] = tempTile;
-        tempTile = tempTileToReplace;
+        tempTile = currentTop[1][2];
+        currentTop[1][2] = currentTop[0][1];
+        tempTileToReplace = currentTop[2][1];
+        currentTop[2][1] = tempTile;
+        tempTile = currentTop[1][0];
+        currentTop[0][1] = tempTileToReplace;
 
-        tempTileToReplace = this.tiles[0][1][0];
-        this.tiles[0][1][0] = tempTile;
-        tempTile = tempTileToReplace;
-
-        tempTileToReplace = this.tiles[0][1][0];
-        this.tiles[0][1][0] = tempTile;
-
-        for (int face = 1; face < 4; face++) {
+        for (int face = 0; face < 3; face++) {
             for (int tile = 0; tile < this.tiles[0][0].length; tile++) {
-                this.tiles[face][0][tile] = currentSides[face - 1][tile];
+                this.tiles[face + 1][0][tile] = currentSides[face][tile];
+            }
+        }
+        for (int row = 0; row < this.tiles[0].length; row++) {
+            for (int tile = 0; tile < this.tiles[0].length; tile++) {
+                this.tiles[0][row][tile] = currentTop[row][tile];
             }
         }
     }
