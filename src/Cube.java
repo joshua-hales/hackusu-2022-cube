@@ -112,14 +112,12 @@ public class Cube {
 
     public boolean isSolved() {
         boolean solved = true;
-        while (solved) {
-            for (int side = 0; side < this.tiles.length; side++) {
-                for (int face = 0; face < tiles.length; face++) {
-                    for (int row = 0; row < this.tiles[face].length; row++) {
-                        if (!this.tiles[side][face][row].equals(this.solved[side][face][row])) {
-                            solved = false;
-                            break;
-                        }
+        for (int side = 0; side < this.tiles.length; side++) {
+            for (int face = 0; face < this.tiles[side].length; face++) {
+                for (int row = 0; row < this.tiles[face].length; row++) {
+                    if (!this.tiles[side][face][row].equals(this.solved[side][face][row])) {
+                        solved = false;
+                        break;
                     }
                 }
             }
