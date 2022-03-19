@@ -130,6 +130,111 @@ public class CubeTest {
 
         cube1.scramble();
         Assert.assertFalse("Cube should not be solved after a scramble", cube1.isSolved());
+    }
 
+    @org.junit.Test
+    public void CubeIsValid() {
+        Cube cube1 = new Cube();
+        Cube cube2 = new Cube(new String[][][]{
+                {
+                        {"W","W","W"},
+                        {"W","R","W"},
+                        {"W","W","W"}
+                },
+                {
+                        {"R","R","R"},
+                        {"R","R","R"},
+                        {"R","R","R"}
+                },
+                {
+                        {"B","B","B"},
+                        {"B","B","B"},
+                        {"B","B","B"}
+                },
+                {
+                        {"O","O","O"},
+                        {"O","O","O"},
+                        {"O","O","O"}
+                },
+                {
+                        {"G","G","G"},
+                        {"G","G","G"},
+                        {"G","G","G"}
+                },
+                {
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"}
+                }
+        });
+
+        Cube cube3 = new Cube(new String[][][]{
+                {
+                        {"W","W","W"},
+                        {"W","W","W"},
+                        {"W","W","W"}
+                },
+                {
+                        {"R","R","R"},
+                        {"R","R","R"},
+                        {"R","R","R"}
+                },
+                {
+                        {"B","B","B"},
+                        {"B","B","B"},
+                        {"B","B","B"}
+                },
+                {
+                        {"O","O","O"},
+                        {"O","O","O"},
+                        {"O","O","O"}
+                },
+                {
+                        {"G","G","G"},
+                        {"G","G","G"},
+                        {"G","1","G"}
+                },
+                {
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"}
+                }
+        });
+
+        Assert.assertTrue("Checking to see if cube is valid", cube1.isValid());
+        Assert.assertFalse("Should be an invalid cube, because there is an extra R tile and a missing W tile", cube2.isValid());
+        Assert.assertFalse("Should be an invalid cube, because there is an invalid tile and its missing a G", cube3.isValid());
+        Assert.assertFalse("Should be an invalid cube, there is a missing B tile", new Cube(new String[][][]{
+                {
+                        {"W","W","W"},
+                        {"W","W","W"},
+                        {"W","W","W"}
+                },
+                {
+                        {"R","R","R"},
+                        {"R","R","R"},
+                        {"R","R","R"}
+                },
+                {
+                        {"","B","B"},
+                        {"B","B","B"},
+                        {"B","B","B"}
+                },
+                {
+                        {"O","O","O"},
+                        {"O","O","O"},
+                        {"O","O","O"}
+                },
+                {
+                        {"G","G","G"},
+                        {"G","G","G"},
+                        {"G","G","G"}
+                },
+                {
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"},
+                        {"Y","Y","Y"}
+                }
+        }).isValid());
     }
 }

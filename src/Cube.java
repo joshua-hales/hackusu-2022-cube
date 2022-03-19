@@ -114,7 +114,41 @@ public class Cube {
     }
 
     public boolean isValid() {
-        return false;
+        boolean valid = true;
+        int[] numTiles = new int[this.tiles.length];
+        for (int side = 0; side < this.tiles.length; side++) {
+            for (int row = 0; row < this.tiles[side].length; row++) {
+                for (int tile = 0; tile < this.tiles[side][row].length; tile++) {
+                    if (this.tiles[side][row][tile].equals("W")) {
+                        numTiles[0]++;
+                    }
+                    else if (this.tiles[side][row][tile].equals("R")) {
+                        numTiles[1]++;
+                    }
+                    else if (this.tiles[side][row][tile].equals("B")) {
+                        numTiles[2]++;
+                    }
+                    else if (this.tiles[side][row][tile].equals("O")) {
+                        numTiles[3]++;
+                    }
+                    else if (this.tiles[side][row][tile].equals("G")) {
+                        numTiles[4]++;
+                    }
+                    else if (this.tiles[side][row][tile].equals("Y")) {
+                        numTiles[5]++;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        }
+        for (int color = 0; color < this.tiles.length; color++) {
+            if (numTiles[color] != (this.tiles[color].length * this.tiles[color][0].length)) {
+                valid = false;
+            }
+        }
+        return valid;
     }
 
     public boolean isSolved() {
