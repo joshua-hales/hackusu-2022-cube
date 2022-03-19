@@ -105,7 +105,7 @@ public class Cube {
     public void scramble() {
         int numTurns = 10000;
         Random random = new Random();
-        String[] options = new String[] {"U", "D", "L", "R", "F", "B"};
+        String[] options = new String[] {"U", "U'", "D", "D'", "L", "L'", "R", "R'", "F", "F'", "B", "B'"};
         String[] moves = new String[numTurns];
         for (int i = 0; i < numTurns; i++) {
             moves[i] = options[random.nextInt(options.length)];
