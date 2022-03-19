@@ -175,6 +175,18 @@ public class Cube {
         return tiles[face - 1][row][col - 1];
     }
 
+    public String[][][] getWholeCube() {
+        return this.tiles;
+    }
+
+    public int getNumSides() {
+        return this.tiles.length;
+    }
+
+    public int getRowLength(int side) {
+        return this.tiles[side].length;
+    }
+
     public ArrayList<String> getHistory() {
         return history;
     }
