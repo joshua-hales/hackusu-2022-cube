@@ -154,7 +154,7 @@ public class Cube {
     }
 
     public void rotate(String[] commands) {
-        rotateUp();
+        rotateDown();
     }
 
     private void rotateUp() {
@@ -217,7 +217,59 @@ public class Cube {
     }
 
     private void rotateDown() {
+        String[][] currentBottom = new String[3][3];
+        for (int row = 0; row < this.tiles[5].length; row++) {
+            currentBottom[row] = this.tiles[5][row].clone();
+        }
 
+        String tempTile = "";
+        String tempTile2 = "";
+
+        tempTile = currentBottom[2][0];
+        tempTile2 = currentBottom[0][0];
+        currentBottom[2][0] = currentBottom[2][2];
+        currentBottom[0][0] = tempTile;
+        tempTile = tempTile2;
+        tempTile2 = currentBottom[0][2];
+        currentBottom[0][2] = tempTile;
+        tempTile = tempTile2;
+        currentBottom[2][2] = tempTile;
+
+        tempTile = currentBottom[1][2];
+        currentBottom[1][2] = currentBottom[0][1];
+        tempTile2 = currentBottom[2][1];
+        currentBottom[2][1] = tempTile;
+        tempTile = currentBottom[1][0];
+        currentBottom[1][0] = tempTile2;
+        currentBottom[0][1] = tempTile;
+
+        for (int row = 0; row < this.tiles[5].length; row++) {
+            this.tiles[5][row] = currentBottom[row].clone();
+        }
+
+        String[][] currentSides = new String[4][3];
+        for (int side = 0; side < 4; side++) {
+            for (int row = 0; row < this.tiles[side + 1].length; row++) {
+                currentSides[side][row] = this.tiles[side + 1][2][row];
+            }
+        }
+
+        String[] tempRow = new String[3];
+        String[] tempRow2 = new String[3];
+
+        tempRow = currentSides[1].clone();
+        tempRow2 = currentSides[2].clone();
+        currentSides[1] = currentSides[0].clone();
+        currentSides[2] = tempRow.clone();
+        tempRow = tempRow2.clone();
+        tempRow2 = currentSides[3].clone();
+        currentSides[3] = tempRow.clone();
+        tempRow = tempRow2.clone();
+        currentSides[0] = tempRow;
+
+        for (int side = 0; side < 4; side++) {
+            this.tiles[side + 1][2] = currentSides[side].clone();
+        }
     }
 
     private void rotateLeft() {
