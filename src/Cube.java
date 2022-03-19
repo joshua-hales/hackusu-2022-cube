@@ -140,14 +140,22 @@ public class Cube {
 
     @Override
     public String toString() {
-        return "Cube{" +
-                "tiles=" + Arrays.toString(tiles) +
-                ", history=" + history +
-                '}';
+        StringBuilder output = new StringBuilder();
+        for (String[][] face : tiles) {
+            for (String[] row : face) {
+                for (String tile : row) {
+                    output.append(tile + " ");
+                }
+                output.append("\n");
+            }
+            output.append("\n");
+        }
+        output.append("history = " + history);
+        return output.toString();
     }
 
     public void rotate(String[] commands) {
-
+        rotateUp();
     }
 
     private void rotateUp() {
