@@ -122,19 +122,19 @@ public class Cube {
                     if (this.tiles[side][row][tile].equals("W")) {
                         numTiles[0]++;
                     }
-                    else if (this.tiles[side][row][tile].equals("R")) {
+                    else if (this.tiles[side][row][tile].equalsIgnoreCase("R")) {
                         numTiles[1]++;
                     }
-                    else if (this.tiles[side][row][tile].equals("B")) {
+                    else if (this.tiles[side][row][tile].equalsIgnoreCase("B")) {
                         numTiles[2]++;
                     }
-                    else if (this.tiles[side][row][tile].equals("O")) {
+                    else if (this.tiles[side][row][tile].equalsIgnoreCase("O")) {
                         numTiles[3]++;
                     }
-                    else if (this.tiles[side][row][tile].equals("G")) {
+                    else if (this.tiles[side][row][tile].equalsIgnoreCase("G")) {
                         numTiles[4]++;
                     }
-                    else if (this.tiles[side][row][tile].equals("Y")) {
+                    else if (this.tiles[side][row][tile].equalsIgnoreCase("Y")) {
                         numTiles[5]++;
                     }
                     else {
@@ -156,7 +156,7 @@ public class Cube {
         for (int side = 0; side < this.tiles.length; side++) {
             for (int face = 0; face < this.tiles[side].length; face++) {
                 for (int row = 0; row < this.tiles[face].length; row++) {
-                    if (!this.tiles[side][face][row].equals(this.solved[side][face][row])) {
+                    if (!this.tiles[side][face][row].equalsIgnoreCase(this.solved[side][face][row])) {
                         solved = false;
                         break;
                     }
@@ -201,17 +201,17 @@ public class Cube {
             times = 3;
         }
         for (int i = 0; i < times; i++) {
-            if (command.startsWith("U")) {
+            if (command.toUpperCase().startsWith("U")) {
                 rotateUp();
-            } else if (command.startsWith("D")) {
+            } else if (command.toUpperCase().startsWith("D")) {
                 rotateDown();
-            } else if (command.startsWith("L")) {
+            } else if (command.toUpperCase().startsWith("L")) {
                 rotateLeft();
-            } else if (command.startsWith("R")) {
+            } else if (command.toUpperCase().startsWith("R")) {
                 rotateRight();
-            } else if (command.startsWith("F")) {
+            } else if (command.toUpperCase().startsWith("F")) {
                 rotateFront();
-            } else if (command.startsWith("B")) {
+            } else if (command.toUpperCase().startsWith("B")) {
                 rotateBack();
             }
         }
