@@ -11,11 +11,14 @@ public class CubeSolver {
     }
 
     public void solve() {
-
+        solveTop();
+        solveMid();
+        solveBottom();
     }
 
     private void solveTop() {
-
+        whiteCross();
+        whiteCorners();
     }
 
     private void whiteCross() {
@@ -31,7 +34,9 @@ public class CubeSolver {
     }
 
     private void solveBottom() {
-
+        yellowCross();
+        yellowCorners();
+        yellowEdges();
     }
 
     private void yellowCross() {
