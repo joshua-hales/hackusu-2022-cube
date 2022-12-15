@@ -102,8 +102,14 @@ The flattened cube is displayed as follows:
 
 The program can be terminated at any time by entering `^C`.
 
+
 ## Documentation
 
 Limited documentation is available in the [`doc`](doc) directory. It describes the initial intended functionality. There
 are also diagrams to help visualize cube operations and implementation. The diagrams were created using
 [Lucidchart](https://www.lucidchart.com/pages/).
+
+
+## License
+
+This program is licensed under the [MIT License](LICENSE.md).
