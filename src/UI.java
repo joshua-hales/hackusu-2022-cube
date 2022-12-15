@@ -1,13 +1,15 @@
 import java.util.Scanner;
 
 /**
- * Brief Description
+ * Allows a user to manipulate a Rubik's Cube.
  * <p>
- * Longer Description
+ *     A user can input their own scrambled cube or use a randomly generated one. The program prints the cube and
+ *     prompts the user for a move until the cube is solved.
+ * </p>
  *
  * @author Joshua Hales and Aaron Hales
  */
-public class UserCube {
+public class UI {
     public static final String[] COLOR_ORDER = {"W", "R", "B", "O", "G", "Y"};
     public static final String[] TURNS = {"U", "U'", "D", "D'", "L", "L'", "R", "R'", "F", "F'", "B", "B'"};
 

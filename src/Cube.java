@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Brief Description
+ * Provides a 3x3 Rubik's Cube with methods to rotate the cube and check if it is solved.
  * <p>
- * Longer Description
+ *     A cube can be created with the default constructor, which creates a solved cube, or with a 6x3x3 String array,
+ *     which creates a cube with tiles in the specified positions.
+ * </p>
  *
  * @author Joshua Hales and Aaron Hales
  */

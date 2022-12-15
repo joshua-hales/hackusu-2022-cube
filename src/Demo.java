@@ -1,11 +1,9 @@
 /**
- * Brief Description
- * <p>
- * Longer Description
+ * Demonstrates the use of the {@link Cube} class.
  *
  * @author Joshua Hales and Aaron Hales
  */
-public class TestingCube {
+public class Demo {
     public static void main(String[] args) {
         Cube cube = new Cube();
         CubeSolver cubeSolver = new CubeSolver(cube);
