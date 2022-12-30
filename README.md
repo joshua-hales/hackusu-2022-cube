@@ -6,7 +6,7 @@ is solved.
 This program was created for the HackUSU 2022 hackathon and was a finalist in the general category. The program is
 written in Java and uses JUnit for unit testing. This program is **not** a solver and is not implemented optimally.
 
-You can read about the development process [here](https://joshua-hales.github.io).
+You can read about the development process [here](https://joshua-hales.github.io/competition/2022/12/29/hack-usu.html).
 
 
 ## Usage
